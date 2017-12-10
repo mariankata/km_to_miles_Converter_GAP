@@ -31,8 +31,6 @@ class MainHandler(BaseHandler):
     def get(self):
         return self.render_template("km to miles converter.html")
     def post(self):
-        #kmstr = self.request.get("km")
-        #if (len(kmst)==0):
         km = self.request.get("km")
         miles = self.request.get("miles")
         if len(km) > 0 and len(miles) == 0:
