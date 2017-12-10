@@ -31,16 +31,20 @@ class MainHandler(BaseHandler):
     def get(self):
         return self.render_template("km to miles converter.html")
     def post(self):
-        km = float(self.request.get("km"))
-        miles = float(self.request.get("miles"))
-        if km == True:
+        #kmstr = self.request.get("km")
+        #if (len(kmst)==0):
+        km = self.request.get("km")
+        miles = self.request.get("miles")
+        if len(km) > 0 and len(miles) == 0:
             result = {
-                "result" : km * 0.621371
+                "result" : float(km) * 0.62
             }
-        elif miles == True:
+        elif len(km) == 0 and len(miles) > 0:
             result = {
-                "result" : miles * 1.60934
+                "result" : float(miles) * 1.61
             }
+        else:
+            return self.render_template("error.html")
         return self.render_template("result.html", params=result)
 
 
